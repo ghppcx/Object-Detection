@@ -1,6 +1,5 @@
 *.bin
-*.om
-*.txt
-*.jpg
+
+
 *.png
 __pycache__/ 

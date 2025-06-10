@@ -1,0 +1,8 @@
+numpy
+opencv-python
+scipy
+matplotlib
+Pillow
+tqdm
+pyyaml
+# pyACL为昇腾CANN自带，无需pip安装 
