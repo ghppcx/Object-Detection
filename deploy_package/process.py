@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import subprocess
+import json
 
 def process_img(img_path):
     # 1. 预处理
@@ -30,4 +31,19 @@ def process_img(img_path):
         w = int(x2 - x1)
         h = int(y2 - y1)
         result.append({"x": x, "y": y, "w": w, "h": h})
-    return result 
+    return result
+
+
+def batch_process_images(image_dir='test_images', output_json='result.json'):
+    result_dict = {}
+    for img_name in os.listdir(image_dir):
+        if not img_name.lower().endswith(('.jpg', '.png', '.jpeg')):
+            continue
+        img_path = os.path.join(image_dir, img_name)
+        boxes = process_img(img_path)
+        result_dict[img_name] = boxes
+    with open(output_json, 'w', encoding='utf-8') as f:
+        json.dump(result_dict, f, ensure_ascii=False, indent=4)
+
+if __name__ == '__main__':
+    batch_process_images() 
